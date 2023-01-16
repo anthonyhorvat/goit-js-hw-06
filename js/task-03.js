@@ -14,22 +14,34 @@ const images = [
 ];
 const galleryEl = document.querySelector(".gallery");
 
-const makeGallery = (images) => {
-  return images.map((image) => {
-    const listItem = document.createElement("li");
-    const listItemImage = document.createElement("img");
-    listItem.append(listItemImage);
-    listItemImage.src = image.url;
-    listItemImage.alt = image.alt;
-    listItemImage.width = 320;
-    return listItem;
-  });
-};
-
-const listEl = makeGallery(images);
-galleryEl.append(...listEl);
-
+const makeGallery = images
+  .map(
+    (image) =>
+      `<li class="list"><img class="gallery-image" src = ${image.url} width = "400" alt = ${image.alt}"></img></li>`
+  )
+  .join("");
 galleryEl.style.display = "flex";
 galleryEl.style.gap = "10px";
 galleryEl.style.listStyleType = "none";
 galleryEl.style.justifyContent = "center";
+
+galleryEl.insertAdjacentHTML("beforeend", makeGallery);
+// const makeGallery = (images) => {
+//   return images.map((image) => {
+//     const listItem = document.createElement("li");
+//     const listItemImage = document.createElement("img");
+//     listItem.append(listItemImage);
+//     listItemImage.src = image.url;
+//     listItemImage.alt = image.alt;
+//     listItemImage.width = 320;
+//     return listItem;
+//   });
+// };
+
+// const listEl = makeGallery(images);
+// galleryEl.append(...listEl);
+
+// galleryEl.style.display = "flex";
+// galleryEl.style.gap = "10px";
+// galleryEl.style.listStyleType = "none";
+// galleryEl.style.justifyContent = "center";
